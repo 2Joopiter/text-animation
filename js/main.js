@@ -26,14 +26,18 @@ function splitText(el) {
 
 */
 
+const main = document.querySelector('main');
 const btns = document.querySelectorAll('li');
-const boxs = document.querySelectorAll('h1');
+const boxs = document.querySelectorAll('article');
 
 btns.forEach((btn, idx) => {
 	btn.addEventListener('click', () => {
-		btns.forEach((btn) => btn.classList.remove('on'));
-		btns[idx].classList.add('on');
-		boxs.forEach((data) => data.classList.remove('on'));
-		boxs[idx].classList.add('on');
+		activation(btns, idx);
+		activation(boxs, idx);
 	});
 });
+
+function activation(arr, idx) {
+	arr.forEach((el) => el.classList.remove('on'));
+	arr[idx].classList.add('on');
+}
