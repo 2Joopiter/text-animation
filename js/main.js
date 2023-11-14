@@ -31,8 +31,8 @@ const btns = document.querySelectorAll('li');
 const boxs = document.querySelectorAll('article');
 const tits = document.querySelectorAll('h1');
 
-splitText(tits[0]); // 인수로 전달되는 값은 'h1'이라는 문자가 아닌 h1 돔 자체임
-splitText(tits[1]);
+splitText(tits[0], 0.2); // 인수로 전달되는 값은 'h1'이라는 문자가 아닌 h1 돔 자체임
+splitText(tits[1], 0);
 
 btns.forEach((btn, idx) => {
 	btn.addEventListener('click', () => {
@@ -46,10 +46,13 @@ function activation(arr, idx) {
 	arr[idx].classList.add('on');
 }
 
-
 //해당 함수는 DOM자체를 인수로 전달받음. 따라서 el = dom임
-function splitText(el) {
+function splitText(el, interval) {
 	let tags = '';
-	for (let letter of el.innerText) tags += `<span>${letter}</span>`;
+	let count = 0;
+	for (let letter of el.innerText) {
+		tags += `<span style='transition-delay:${interval * count}s;'>${letter}</span>`;
+		count++;
+	}
 	el.innerHTML = tags;
 }
