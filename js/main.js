@@ -29,6 +29,10 @@ function splitText(el) {
 const main = document.querySelector('main');
 const btns = document.querySelectorAll('li');
 const boxs = document.querySelectorAll('article');
+const tits = document.querySelectorAll('h1');
+
+splitText(tits[0]); // 인수로 전달되는 값은 'h1'이라는 문자가 아닌 h1 돔 자체임
+splitText(tits[1]);
 
 btns.forEach((btn, idx) => {
 	btn.addEventListener('click', () => {
@@ -40,4 +44,12 @@ btns.forEach((btn, idx) => {
 function activation(arr, idx) {
 	arr.forEach((el) => el.classList.remove('on'));
 	arr[idx].classList.add('on');
+}
+
+
+//해당 함수는 DOM자체를 인수로 전달받음. 따라서 el = dom임
+function splitText(el) {
+	let tags = '';
+	for (let letter of el.innerText) tags += `<span>${letter}</span>`;
+	el.innerHTML = tags;
 }
